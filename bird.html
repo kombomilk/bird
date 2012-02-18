@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Test 3D</title>
+  </head>
+
+  <body>
+    <div id="container"/>
+  </body>
+
+  <script src="libraries/jquery-1.5.1.min.js"></script>
+  <script type="text/javascript" src="libraries/Three.js"></script>
+
+  <script type="text/javascript" src="helpers/global.js"></script>
+  <script type="text/javascript" src="helpers/head.js"></script>
+  <script type="text/javascript" src="helpers/body.js"></script>
+  <script type="text/javascript" src="helpers/tail.js"></script>
+  <script type="text/javascript" src="helpers/beak.js"></script>
+  <script type="text/javascript" src="helpers/leftWing.js"></script>
+  <script type="text/javascript" src="helpers/rightWing.js"></script>
+
+  <script type="text/javascript">
+    function animate2(t) {
+      camera.rotation.x += Math.cos(t/600)*85;
+      renderer.render(scene, camera);
+      window.requestAnimationFrame(animate, render.domElement);
+    }
+
+    function animate(t) {
+      //beak.rotation.z += Math.sin(t)/10;
+      body.position.y += Math.sin(t)*2;
+      head.position.y = body.position.y+size*3/2;
+      tail.position.y = body.position.y + size;
+      beak.position.y = body.position.y + size;
+      renderer.render(scene, camera);
+      window.requestAnimationFrame(animate, renderer.domElement);
+    };
+
+  // set some camera attributes
+var $container = $('#container');
+// attach the render-supplied DOM element
+$container.append(renderer.domElement);
+
+scene.add(head);
+scene.add(body);
+scene.add(tail);
+scene.add(beak);
+//scene.add(leftWing);
+//scene.add(rightWing);
+scene.add(pointLight);
+renderer.render(scene, camera);
+
+animate(new Date().getTime());
+</script>
+
+</html>
