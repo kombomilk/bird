@@ -6,61 +6,57 @@
   </head>
 
   <body>
-    <div id="container"/>
-  </body>
+    <div id="container" />
+    </body>
+   <!-- вот такое вот тельце маленькое -->
+    <script src="libraries/jquery-1.5.1.min.js"></script>
+    
+    <script type="text/javascript" src="libraries/Three.js"></script>
+    <!-- подключаем все наши части тела -->
+    <script type="text/javascript" src="helpers/global.js"></script>
+    <script type="text/javascript" src="helpers/head.js"></script>
+    <script type="text/javascript" src="helpers/body.js"></script>
+    <script type="text/javascript" src="helpers/tail.js"></script>
+    <script type="text/javascript" src="helpers/beak.js"></script>
+    <script type="text/javascript" src="helpers/leftWing.js"></script>
+    <script type="text/javascript" src="helpers/rightWing.js"></script>
+    <script type="text/javascript" src="helpers/leftEye.js"></script>
+    <script type="text/javascript" src="helpers/rightEye.js"></script>
 
-  <script src="libraries/jquery-1.5.1.min.js"></script>
-  <script type="text/javascript" src="libraries/Three.js"></script>
-
-  <script type="text/javascript" src="helpers/global.js"></script>
-  <script type="text/javascript" src="helpers/head.js"></script>
-  <script type="text/javascript" src="helpers/body.js"></script>
-  <script type="text/javascript" src="helpers/tail.js"></script>
-  <script type="text/javascript" src="helpers/beak.js"></script>
-  <script type="text/javascript" src="helpers/leftWing.js"></script>
-  <script type="text/javascript" src="helpers/rightWing.js"></script>
-  <script type="text/javascript" src="helpers/leftEye.js"></script>
-  <script type="text/javascript" src="helpers/rightEye.js"></script>
-
-  <script type="text/javascript">
-    function animate(t) {
-      camera.position.x = Math.sin(t/1000)*300;
+    <script type="text/javascript">
+      // функция для анимации птички
+      function animate(t) {
+        camera.position.x = Math.sin(t/1000)*300;
         camera.position.y = 150;
         camera.position.z = Math.cos(t/1000)*300;
-        // you need to update lookAt every frame
+
         camera.lookAt(scene.position);
-        body.position.y += Math.sin(t)*2;
+        body.position.y = Math.sin(t)*3/2;
         head.position.y = body.position.y+size*3/2;
-        beak.position.y = tail.position.y = body.position.y + size*5/4;
+        head.position.y += Math.sin(t/1000)*10;
+        tail.position.y = body.position.y + size*5/4;
         leftWing.position.y = rightWing.position.y = body.position.y;
 
-        rightWing.rotation.x = Math.cos(t/100) + 1.01*Math.sin(t/100);
+        rightWing.rotation.x = (Math.cos(t/100) + 2.08*Math.sin(t/100))*3;
         leftWing.rotation.x = -rightWing.rotation.x;
 
         leftEye.position.x = rightEye.position.x = head.position.x + size*4/5;
         rightEye.position.z = head.position.z + size/2;
         leftEye.position.z = head.position.z - size/2;
         leftEye.position.y = rightEye.position.y = beak.position.y + size/10;
-        //renderer automatically clears unless autoClear = false
+
+        leftEye.position.y = rightEye.position.y = head.position.y + size/10;
+        beak.position.y = head.position.y;
+
         renderer.render(scene, camera);
         window.requestAnimationFrame(animate, renderer.domElement);
-    }
+      }
 
-    function animate2(t) {
-      //beak.rotation.z += Math.sin(t)/10;
-      body.position.y += Math.sin(t)*2;
-      head.position.y = body.position.y+size*3/2;
-      tail.position.y = body.position.y + size;
-      beak.position.y = body.position.y + size;
-      renderer.render(scene, camera);
-      window.requestAnimationFrame(animate, renderer.domElement);
-    };
-
-  // set some camera attributes
+// сегодня мы будем рисовать птицу, ее зовут Blacky, потому что она blackbird
+// любимая песня Blacky - "Bye, bye, blackbird"
 var $container = $('#container');
-// attach the render-supplied DOM element
 $container.append(renderer.domElement);
-
+// добавляем части тела
 scene.add(head);
 scene.add(body);
 scene.add(tail);

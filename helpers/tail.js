@@ -1,3 +1,4 @@
+// хвостяра
 var tailTopRadius = size*3/2, tailBottomRadius = size/4, tailHeight = size*2;
 
 tailMaterial = new THREE.MeshBasicMaterial({color: 0x010101});

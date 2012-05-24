@@ -1,3 +1,4 @@
+// правый глаз Blacky 
 var rightEyeMaterial = new THREE.MeshBasicMaterial({color: 0xFE9000});
 var rightEyeRadius = size/10, rightEyeSegments = 16, rightEyeRings = 16;
 rightEye = new THREE.Mesh(

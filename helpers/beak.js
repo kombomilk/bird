@@ -1,3 +1,4 @@
+// это наш клюв, он желтый и острый
 var beakMaterial = new THREE.MeshBasicMaterial({color: 0xEDB000});
 
 var beakTopRadius = 0, beakBottomRadius = size/5, beakHeight = size*2;

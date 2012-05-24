@@ -1,3 +1,4 @@
+// левый глаз
 var leftEyeMaterial = new THREE.MeshBasicMaterial({color: 0xFE9000});
 var leftEyeRadius = size/10, leftEyeSegments = 16, leftEyeRings = 16;
 leftEye = new THREE.Mesh(
